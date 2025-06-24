@@ -104,6 +104,10 @@ let cooldownInterval: number | null = null
 const localVisible = ref(props.visible)
 const codeErrorMessage = ref('')
 
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
 const codeError = computed(() =>
   verificationCode.value && !validateVerificationCode(verificationCode.value)
     ? t('refund.codeInvalid')
@@ -153,10 +157,10 @@ const resendCode = async () => {
     sessionStorage.setItem('verificationCode', newCode)
 
     await emailjs.send(
-      'service_1ymb1aa',
-      'template_ev3e8n5',
+      SERVICE_ID,
+      TEMPLATE_ID,
       { to_email: userEmail.value, verification_code: newCode },
-      '2RMkaE_EEWVbQDFt0',
+      PUBLIC_KEY,
     )
 
     verificationCode.value = ''
