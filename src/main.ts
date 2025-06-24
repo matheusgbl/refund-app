@@ -1,7 +1,6 @@
 import './assets/main.css'
 
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
 import PrimeVue from 'primevue/config'
 import Aura from '@primevue/themes/aura'
 import { createI18n } from 'vue-i18n'
@@ -29,7 +28,6 @@ const i18n = createI18n({
 
 const app = createApp(App)
 
-app.use(createPinia())
 app.use(router)
 app.use(PrimeVue, {
   theme: {
